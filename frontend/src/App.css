@@ -1,0 +1,899 @@
+/* ─── App Container ─── */
+
+.drink-app {
+  position: relative;
+  /* height: 100vh; */
+  background:
+    radial-gradient(
+      circle at 57% 28%,
+      rgba(255, 255, 255, 0.2),
+      transparent 18%
+    ),
+    radial-gradient(
+      circle at 34% 61%,
+      rgba(255, 255, 255, 0.1),
+      transparent 24%
+    ),
+    linear-gradient(
+      135deg,
+      var(--page-bg) 0%,
+      var(--page-bg) 35%,
+      var(--page-bg-dark) 100%
+    );
+}
+
+.drink-app::before {
+  content: "";
+  position: absolute;
+  inset: auto auto -6rem -10rem;
+  width: 28rem;
+  height: 28rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  filter: blur(40px);
+}
+
+.drink-app::after {
+  content: "";
+  position: absolute;
+  top: 14%;
+  right: -8rem;
+  width: 24rem;
+  height: 24rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  filter: blur(50px);
+}
+
+/* ─── Top Bar ─── */
+
+.topbar {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2.35rem 3.25rem 0;
+  animation: headerDrop 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.brand {
+  display: inline-flex;
+  flex-direction: column;
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.9rem;
+  font-weight: 900;
+  letter-spacing: 0.08rem;
+  line-height: 0.9;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.topnav {
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
+  margin-left: 2.5rem;
+}
+
+.topnav a {
+  color: rgba(255, 255, 255, 0.96);
+  font-size: 1.125rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.125rem;
+  height: 2.125rem;
+  padding: 0;
+  color: #ffffff;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.icon-button-cart {
+  position: relative;
+  overflow: visible;
+}
+
+.icon-button-accent {
+  color: var(--accent);
+}
+
+.cart-count-badge {
+  position: absolute;
+  top: -0.4rem;
+  right: -0.55rem;
+  min-width: 1.2rem;
+  height: 1.2rem;
+  padding: 0 0.32rem;
+  border-radius: 999px;
+  color: #120f18;
+  background: #ffffff;
+  box-shadow: 0 0.45rem 1rem rgba(17, 12, 28, 0.18);
+  font-size: 0.7rem;
+  font-weight: 800;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  animation: cartBadgePop 420ms ease;
+}
+
+/* ─── Page Content ─── */
+
+.page-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* ─── Hero Stage ─── */
+
+.hero-stage {
+  position: relative;
+  min-height: 100vh;
+}
+
+.hero-layout {
+  position: relative;
+  z-index: 2;
+  min-height: calc(100vh - 7.5rem);
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem clamp(28rem, 40vw, 36rem) 7rem 3rem;
+}
+
+/* ─── Hero Copy ─── */
+
+.hero-copy {
+  margin-top: 3rem;
+  position: relative;
+  z-index: 3;
+  max-width: clamp(34rem, 40vw, 39rem);
+  padding-top: 0;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-bottom: 1rem;
+  color: #f7f2db;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.06rem;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: contentRevealLeft 700ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both;
+}
+
+.eyebrow-pill {
+  width: 1.25rem;
+  height: 0.85rem;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.hero-title {
+  margin: 0;
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(2.5rem, 4.5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.hero-title span {
+  display: block;
+  opacity: 0;
+  animation: contentRevealLeft 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-title span:nth-child(1) {
+  animation-delay: 190ms;
+}
+.hero-title span:nth-child(2) {
+  animation-delay: 270ms;
+}
+.hero-title span:nth-child(3) {
+  animation-delay: 350ms;
+}
+
+.hero-price {
+  margin: 1rem 0 0;
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 800;
+  opacity: 0;
+  animation: contentRevealLeft 700ms cubic-bezier(0.22, 1, 0.36, 1) 430ms both;
+}
+
+.hero-description {
+  max-width: 36rem;
+  margin: 0.75rem 0 0;
+  color: rgba(244, 236, 255, 0.94);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  opacity: 0;
+  animation: contentRevealLeft 700ms cubic-bezier(0.22, 1, 0.36, 1) 510ms both;
+}
+
+/* ─── Hero Actions ─── */
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  opacity: 0;
+  animation: contentRevealUp 720ms cubic-bezier(0.22, 1, 0.36, 1) 620ms both;
+}
+
+.quantity-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.quantity-picker button,
+.quantity-picker span,
+.stage-controls button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+}
+
+.quantity-picker button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  color: #ffffff;
+  background: transparent;
+  font-size: 1.5rem;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.quantity-picker span {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: #ffffff;
+  color: var(--page-bg);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.cart-button {
+  min-width: 7.5rem;
+  height: 2.5rem;
+  padding: 0 1.2rem;
+  border: 0;
+  border-radius: 999px;
+  color: var(--accent-text);
+  background: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.variants-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-width: auto;
+  padding: 0 0 0.35rem;
+  margin-left: 0.25rem;
+  color: #f7f1ff;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.45);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* ─── Flying Cart Item ─── */
+
+.flying-cart-item {
+  position: fixed;
+  left: var(--fly-start-x);
+  top: var(--fly-start-y);
+  z-index: 12;
+  min-width: 2.6rem;
+  height: 2.6rem;
+  padding: 0 0.8rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-text);
+  background: #ffffff;
+  box-shadow: 0 1rem 2rem rgba(18, 14, 30, 0.18);
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: flyToCart 720ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ─── Hero Visual ─── */
+
+.hero-visual {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: min(45vw, 39rem);
+  min-height: 36rem;
+  z-index: 2;
+  transform: translateY(-50%);
+}
+
+.hero-glow {
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  width: min(42rem, 100%);
+  height: min(42rem, 100%);
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.08) 28%,
+    transparent 70%
+  );
+  transform: translateX(-18%);
+}
+
+.bottle-stage {
+  position: absolute;
+  inset: 0 0 2rem -1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  opacity: 0;
+  animation: bottleEnterRight 1250ms cubic-bezier(0.18, 1, 0.24, 1) 260ms both;
+}
+
+.bottle-image {
+  margin-right: 18rem;
+  width: clamp(26rem, 37vw, 38rem);
+  object-fit: contain;
+  filter: drop-shadow(0 2rem 2rem rgba(48, 22, 98, 0.24));
+  transform: rotate(-22deg) translateY(0.5rem);
+  transform-origin: 50% 55%;
+  animation: bottleFloat 9.5s cubic-bezier(0.42, 0, 0.18, 1) infinite;
+}
+
+/* ─── Floating Badges ─── */
+
+.floating-badge {
+  margin-right: 5rem;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  text-align: center;
+  box-shadow: 0 1.1rem 2.2rem rgba(35, 21, 69, 0.12);
+  opacity: 0;
+  animation: badgeRevealRight 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.floating-badge strong {
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-weight: 800;
+  line-height: 0.96;
+}
+
+.floating-badge span {
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.floating-badge-main {
+  width: 9.5rem;
+  height: 7.25rem;
+  background: var(--badge-main);
+  color: var(--badge-main-text);
+  border-radius: 42% 58% 52% 48% / 46% 40% 60% 54%;
+  transform: rotate(-4deg);
+}
+
+.floating-badge-second {
+  width: 9.5rem;
+  height: 6rem;
+  background: var(--badge-second);
+  color: #ffffff;
+  border-radius: 47% 53% 43% 57% / 48% 43% 57% 52%;
+  transform: rotate(6deg);
+}
+
+.floating-badge-third {
+  width: 7rem;
+  height: 5.35rem;
+  background: var(--badge-third);
+  color: #ffffff;
+  border-radius: 44% 56% 53% 47% / 56% 42% 58% 44%;
+  transform: rotate(11deg);
+}
+
+.floating-badge-top {
+  top: 4%;
+  right: 2rem;
+  animation-delay: 300ms;
+}
+.floating-badge-middle {
+  top: 27%;
+  right: 2.5rem;
+  animation-delay: 420ms;
+}
+.floating-badge-bottom {
+  top: 51%;
+  right: 1rem;
+  animation-delay: 540ms;
+}
+
+/* ─── Stage Controls ─── */
+
+.stage-controls {
+  position: absolute;
+  right: 6rem;
+  bottom: 7rem;
+  display: flex;
+  gap: 1rem;
+  z-index: 4;
+}
+
+.stage-controls button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  color: #ffffff;
+  background: transparent;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* ─── Bottom Strip ─── */
+
+.bottom-strip {
+  position: absolute;
+  left: -1rem;
+  right: -1rem;
+  bottom: 5.75rem;
+  z-index: 0;
+  overflow: hidden;
+  padding: 0.65rem 0;
+  background: #050506;
+  opacity: 0.92;
+  transform: rotate(-3.8deg);
+  animation: stripRise 820ms cubic-bezier(0.22, 1, 0.36, 1) 520ms both;
+}
+
+.bottom-strip-track {
+  display: flex;
+  gap: 2.1rem;
+  width: max-content;
+  padding-inline: 3rem;
+  animation: ticker 18s linear infinite;
+}
+
+.strip-item {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.04rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.strip-divider {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+/* ─── Hover & Focus States ─── */
+
+.quantity-picker button:hover,
+.cart-button:hover,
+.variants-link:hover,
+.stage-controls button:hover,
+.icon-button:hover {
+  transform: translateY(-2px);
+}
+
+.quantity-picker button:focus-visible,
+.cart-button:focus-visible,
+.variants-link:focus-visible,
+.stage-controls button:focus-visible,
+.icon-button:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+}
+
+/* ─── Keyframes ─── */
+
+@keyframes headerDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes contentRevealLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-2.6rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes contentRevealUp {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes badgeRevealRight {
+  from {
+    opacity: 0;
+    transform: translateX(2.4rem) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes bottleEnterRight {
+  from {
+    opacity: 0;
+    transform: translate3d(5rem, 0.5rem, 0) rotate(16deg) scale(0.84);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes bottleFloat {
+  0%,
+  100% {
+    transform: rotate(-22deg) translate3d(0, 0.5rem, 0);
+  }
+  35% {
+    transform: rotate(-19deg) translate3d(0.35rem, -0.55rem, 0);
+  }
+  68% {
+    transform: rotate(-24deg) translate3d(-0.2rem, -1rem, 0);
+  }
+}
+
+@keyframes stripRise {
+  from {
+    opacity: 0;
+    transform: translateY(2.6rem) rotate(-3.8deg);
+  }
+  to {
+    opacity: 0.92;
+    transform: translateY(0) rotate(-3.8deg);
+  }
+}
+
+@keyframes flyToCart {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--fly-dx)), calc(-50% + var(--fly-dy)))
+      scale(0.35);
+  }
+}
+
+@keyframes cartBadgePop {
+  0% {
+    transform: scale(0.7);
+  }
+  55% {
+    transform: scale(1.14);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-25%);
+  }
+}
+
+/* ─── Responsive: ≤ 1180px ─── */
+
+@media (max-width: 1180px) {
+  .topnav {
+    gap: 2rem;
+    margin-left: 0;
+  }
+
+  .hero-layout {
+    padding-inline: 2.75rem;
+    padding-right: clamp(24rem, 42vw, 31rem);
+  }
+
+  .hero-copy {
+    max-width: min(36rem, 100%);
+  }
+
+  .hero-description {
+    max-width: 32rem;
+  }
+
+  .hero-visual {
+    right: -0.25rem;
+    width: min(46vw, 37rem);
+    min-height: 41rem;
+  }
+
+  .bottle-stage {
+    inset: 0 0 2rem -1.25rem;
+  }
+
+  .bottle-image {
+    width: clamp(24rem, 38vw, 35rem);
+  }
+
+  .floating-badge-top {
+    top: 5%;
+    right: 4%;
+  }
+  .floating-badge-middle {
+    top: 27%;
+    right: 1rem;
+  }
+  .floating-badge-bottom {
+    top: 51%;
+    right: 0;
+  }
+
+  .stage-controls {
+    right: 5.5rem;
+    bottom: 7.35rem;
+  }
+}
+
+/* ─── Responsive: ≤ 940px (Tablet) ─── */
+
+@media (max-width: 940px) {
+  .topbar {
+    padding: 2rem 1.4rem 0;
+  }
+
+  .topnav {
+    display: none;
+  }
+
+  .cart-count-badge {
+    top: -0.35rem;
+    right: -0.35rem;
+  }
+
+  .hero-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    min-height: auto;
+    padding: 2.5rem 1.4rem 8.2rem;
+  }
+
+  .hero-copy {
+    max-width: 100%;
+  }
+
+  .hero-description {
+    max-width: 100%;
+    font-size: 0.92rem;
+  }
+
+  .hero-visual {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: auto;
+    min-height: 31rem;
+    margin-top: 1rem;
+    transform: none;
+  }
+
+  .hero-glow {
+    top: 2.5rem;
+    left: 50%;
+    width: min(92vw, 32rem);
+    height: min(92vw, 32rem);
+    transform: translateX(-50%);
+  }
+
+  .bottle-stage {
+    inset: 0 1rem 0 1rem;
+  }
+
+  .floating-badge {
+    z-index: 1;
+  }
+
+  .bottle-image {
+    width: min(92vw, 36rem);
+  }
+
+  .floating-badge-main {
+    width: 9.2rem;
+    height: 7rem;
+  }
+  .floating-badge-second {
+    width: 8.8rem;
+    height: 5.8rem;
+  }
+  .floating-badge-third {
+    width: 6.75rem;
+    height: 5.2rem;
+  }
+
+  .floating-badge span {
+    font-size: 0.95rem;
+  }
+
+  .floating-badge-top {
+    top: 8%;
+    right: 3%;
+  }
+  .floating-badge-middle {
+    top: 32%;
+    right: 12%;
+  }
+  .floating-badge-bottom {
+    top: 51%;
+    right: 1.25rem;
+  }
+
+  .stage-controls {
+    right: 50%;
+    bottom: -0.25rem;
+    transform: translateX(50%);
+  }
+
+  .stage-controls button {
+    width: 3.35rem;
+    height: 3.35rem;
+  }
+
+  .bottom-strip {
+    bottom: 5.1rem;
+  }
+
+  .strip-item {
+    font-size: 1.35rem;
+  }
+
+  .strip-divider {
+    font-size: 2.3rem;
+  }
+}
+
+/* ─── Responsive: ≤ 640px (Mobile) ─── */
+
+@media (max-width: 640px) {
+  .eyebrow {
+    font-size: 1.5rem;
+  }
+
+  .hero-visual {
+    min-height: 28rem;
+  }
+
+  .floating-badge-middle {
+    top: 44%;
+    right: 8%;
+  }
+  .floating-badge-bottom {
+    top: 58%;
+    right: 0.75rem;
+  }
+
+  .stage-controls {
+    gap: 0.9rem;
+    bottom: -0.5rem;
+  }
+
+  .hero-actions {
+    gap: 0.9rem;
+  }
+
+  .variants-link {
+    margin-left: 0;
+    min-width: 0;
+  }
+
+  .bottom-strip {
+    left: -6%;
+    right: -6%;
+    bottom: 4.2rem;
+  }
+}
+
+/* ─── Reduced Motion ─── */
+
+@media (prefers-reduced-motion: reduce) {
+  .topbar,
+  .eyebrow,
+  .hero-title span,
+  .hero-price,
+  .hero-description,
+  .hero-actions,
+  .bottle-stage,
+  .floating-badge,
+  .stage-controls button,
+  .bottom-strip,
+  .cart-count-badge,
+  .flying-cart-item,
+  .bottle-image,
+  .bottom-strip-track {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  .bottom-strip {
+    transform: rotate(-3.8deg) !important;
+  }
+}
