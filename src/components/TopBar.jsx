@@ -4,8 +4,8 @@ export function TopBar({ navItems, cartCount, cartBadgeKey, cartButtonRef }) {
   return (
     <header className="topbar">
       <a className="brand" href="/">
-        <span>Wonder</span>
-        <span>Bost</span>
+        <span>Drink</span>
+        <span>ly</span>
       </a>
 
       <nav className="topnav" aria-label="Primary">

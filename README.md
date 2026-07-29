@@ -1,4 +1,4 @@
-# 🍹 Fresh Drink Website
+# 🍹 Drinkly - Fresh Drink Website
 
 Landing page interaktif untuk produk minuman segar yang dibuat menggunakan **React** dan **Vite**.
 
