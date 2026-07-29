@@ -1,7 +1,7 @@
-import blueberryBottle from "../assets/blueberry.png";
-import limeBottle from "../assets/lime.png";
-import orangeBottle from "../assets/orange.png";
-import strawberryBottle from "../assets/strawberry.png";
+import blueberryBottle from "../assets/images/blueberry.png";
+import limeBottle from "../assets/images/lime.png";
+import orangeBottle from "../assets/images/orange.png";
+import strawberryBottle from "../assets/images/strawberry.png";
 
 export const products = [
   {
